@@ -1,25 +1,26 @@
 class QuestionsController < ApplicationController
+
   def show
-    @question = Question.find_by params[:id]
+    @question = Question.find params[:id]
   end
 
   def destroy
-    @question = Question.find_by params[:id]
+    @question = Question.find params[:id]
     @question.destroy
     redirect_to questions_path
   end
 
   def update
-    @question = Question.find_by params[:id]
+    @question = Question.find params[:id]
     if @question.update question_params
-      redirect_to question_path
+      redirect_to questions_path
     else
       render :edit
     end
   end
 
   def edit
-    @questions = Question.find_by params[:id]
+    @questions = Question.find params[:id]
   end
 
   def index
@@ -35,7 +36,7 @@ class QuestionsController < ApplicationController
   def create
     @question = Question.new(question_params)
     if @question.save
-      redirect_to question_path
+      redirect_to questions_path
     else
       render :new
     end
